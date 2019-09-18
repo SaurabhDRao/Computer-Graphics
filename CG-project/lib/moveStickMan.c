@@ -10,13 +10,13 @@ void moveStickMan(float xStart, float xEnd, float speed) {
         for(float i = xStart; i <= xEnd; i += speed) {
             glClear(GL_COLOR_BUFFER_BIT); 
 
-            glBegin(GL_POLYGON);
-                glColor3f(0.95f, 0.95f, 0.95f);
-                glVertex2f(0, 0);
-                glVertex2f(1000, 0);
-                glVertex2f(1000, 10);
-                glVertex2f(0, 10);
-            glEnd();
+            // glBegin(GL_POLYGON);
+            //     glColor3f(0.95f, 0.95f, 0.95f);
+            //     glVertex2f(0, 0);
+            //     glVertex2f(1000, 0);
+            //     glVertex2f(1000, 10);
+            //     glVertex2f(0, 10);
+            // glEnd();
 
             drawStickMan(i, displacement);
             if(flag)
@@ -34,14 +34,6 @@ void moveStickMan(float xStart, float xEnd, float speed) {
     } else {
         for(float i = xStart; i >= xEnd; i -= speed) {
             glClear(GL_COLOR_BUFFER_BIT); 
-
-            glBegin(GL_POLYGON);
-                glColor3f(0.95f, 0.95f, 0.95f);
-                glVertex2f(0, 0);
-                glVertex2f(1000, 0);
-                glVertex2f(1000, 10);
-                glVertex2f(0, 10);
-            glEnd();
 
             drawStickMan(i, displacement);
             if(flag)

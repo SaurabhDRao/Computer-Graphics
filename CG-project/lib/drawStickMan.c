@@ -47,13 +47,11 @@ void drawStickMan(float x, float displacement) {
 
     // hands
     glBegin(GL_POLYGON);
-        glColor3f(1, 0, 0);
         glVertex2f(x - 2, 120);
         glVertex2f(x - 37 + displacement, 75);
         glVertex2f(x - 32 + displacement, 75);
         glVertex2f(x + 3, 120);
     glEnd();
-    glColor3f(1, 1, 1);
     glBegin(GL_POLYGON);
         glVertex2f(x - 2, 120);
         glVertex2f(x + 32 - displacement, 75);
