@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <GL/glut.h>
 #include "lib/showIntro.c"
-#include "lib/drawStickMan.c"
+#include "lib/moveStickMan.c"
 
 #define WINDOW_WIDTH 1533
 #define WINDOW_HEIGHT 845
+
+int stickManStart = 0;
+int stickMaxEnd = 1000;
 
 void init() {
     glClearColor(0, 0, 0, 0);
@@ -19,16 +22,17 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     // showIntro();
 
-    glBegin(GL_POLYGON);
-        glColor3f(0.95f, 0.95f, 0.95f);
-        glVertex2f(0, 0);
-        glVertex2f(1000, 0);
-        glVertex2f(1000, 10);
-        glVertex2f(0, 10);
-    glEnd();
-
-    drawStickMan();
+    moveStickMan(stickManStart, stickMaxEnd, 0.5);
+    // drawStickMan(500, 20);
     glFlush();
+}
+
+void keypress(unsigned char key, int x, int y) {
+    if(key == 'r') {
+        moveStickMan(stickManStart, stickMaxEnd, 0.5);
+    } else if(key == 'q') {
+        exit(0);
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -37,6 +41,7 @@ int main(int argc, char *argv[]) {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutCreateWindow("CG-Project");
     glutDisplayFunc(display);
+    glutKeyboardFunc(keypress);
     init();
     glutMainLoop();
 }

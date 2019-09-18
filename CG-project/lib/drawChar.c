@@ -10,12 +10,14 @@ void drawBitMapChar(char *str, float x, float y, float z) {
 
 void strokeChar(char *str, int x, int y, int z) {
     char *c;
-    glTranslatef(x + 130, y-100, z);
+    glPushMatrix();
+    glTranslatef(x + 130, y - 100, z);
 	glScalef(0.3f, 0.5f, z);
   
     for (c = str; *c != '\0'; c++) {
         glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN , *c);
 	}
+    glPopMatrix();
 }
 
 /* 
