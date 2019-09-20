@@ -31,8 +31,8 @@ void drawFilledCircle(float x, float y, float radius){
 	glEnd();
 }
 
-void drawStickMan(float x, float displacement) {
-    glColor3f(1, 1, 1);
+void drawStickMan(float x, float displacement, float r, float g, float b) {
+    glColor3f(r, g, b);
 
     // face
     drawFilledCircle(x, 150, 25);

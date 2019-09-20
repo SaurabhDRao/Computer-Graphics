@@ -18,7 +18,8 @@ void moveStickMan(float xStart, float xEnd, float speed) {
             //     glVertex2f(0, 10);
             // glEnd();
 
-            drawStickMan(i, displacement);
+            drawStickMan(i, displacement, 1, 1, 1);
+            drawStickMan(xEnd - i, displacement, 1, 1, 1);
             if(flag)
                 displacement += speed;
             else
@@ -35,7 +36,8 @@ void moveStickMan(float xStart, float xEnd, float speed) {
         for(float i = xStart; i >= xEnd; i -= speed) {
             glClear(GL_COLOR_BUFFER_BIT); 
 
-            drawStickMan(i, displacement);
+            drawStickMan(i, displacement, 1, 1, 1);
+            drawStickMan(xStart - i, displacement, 1, 1, 1);
             if(flag)
                 displacement -= speed;
             else

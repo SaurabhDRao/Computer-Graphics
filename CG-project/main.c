@@ -24,7 +24,8 @@ void display() {
     // showIntro();
 
     moveStickMan(stickManStart, stickMaxEnd, stickManSpeed);
-    // drawStickMan(500, 20);
+    // moveStickMan(1000, 0, 0.2);
+    // drawStickMan(500, 20, 0, 0, 1);
     glFlush();
 }
 
@@ -42,6 +43,7 @@ int main(int argc, char *argv[]) {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutCreateWindow("CG-Project");
     glutDisplayFunc(display);
+    glutReshapeFunc(init);
     glutKeyboardFunc(keypress);
     init();
     glutMainLoop();
