@@ -9,6 +9,7 @@
 int stickManStart = 0;
 int stickMaxEnd = 1000;
 float stickManSpeed = 0.3;
+int showingIntroFlag = 1;
 
 void init() {
     glClearColor(0, 0, 0, 0);
@@ -21,16 +22,23 @@ void init() {
 void display() {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
-    // showIntro();
+    showIntro();
 
-    moveStickMan(stickManStart, stickMaxEnd, stickManSpeed);
+    // moveStickMan(stickManStart, stickMaxEnd, stickManSpeed);
     // moveStickMan(1000, 0, 0.2);
     // drawStickMan(500, 20, 0, 0, 1);
     glFlush();
 }
 
 void keypress(unsigned char key, int x, int y) {
-    if(key == 'r') {
+    if(key == 's') {
+        if(showingIntroFlag) {
+            glClearColor(0, 0, 0, 0);
+            glClear(GL_COLOR_BUFFER_BIT);
+            moveStickMan(stickManStart, stickMaxEnd, stickManSpeed);
+            showingIntroFlag = 0;
+        }
+    } else if(key == 'r') {
         moveStickMan(stickManStart, stickMaxEnd, stickManSpeed);
     } else if(key == 'q') {
         exit(0);
