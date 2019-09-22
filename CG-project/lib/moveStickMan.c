@@ -1,6 +1,7 @@
 #include <GL/glut.h>
 #include <math.h>
 #include "drawStickMan.c"
+#include "drawSpearStickMan.c"
 
 void moveStickMan(float xStart, float xEnd, float speed) {
     float displacement = 0;
@@ -19,13 +20,13 @@ void moveStickMan(float xStart, float xEnd, float speed) {
             // glEnd();
 
             drawStickMan(i, displacement, 1, 1, 1);
-            drawStickMan(xEnd - i, displacement, 1, 1, 1);
+            drawSpearStickMan(xEnd - i, displacement, 0, 0, 1);
             if(flag)
                 displacement += speed;
             else
                 displacement -= speed;
             
-            if(displacement > 37)
+            if(displacement > (37 * 2))
                 flag = 0;
             else if(displacement < 0)
                 flag = 1;
@@ -37,13 +38,13 @@ void moveStickMan(float xStart, float xEnd, float speed) {
             glClear(GL_COLOR_BUFFER_BIT); 
 
             drawStickMan(i, displacement, 1, 1, 1);
-            drawStickMan(xStart - i, displacement, 1, 1, 1);
+            drawSpearStickMan(xStart - i, displacement, 0, 0, 1);
             if(flag)
                 displacement -= speed;
             else
                 displacement += speed;
             
-            if(displacement > 37)
+            if(displacement > (37 * 2))
                 flag = 1;
             else if(displacement < 0)
                 flag = 0;

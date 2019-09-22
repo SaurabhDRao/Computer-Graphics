@@ -27,7 +27,17 @@ void display() {
     // moveStickMan(stickManStart, stickMaxEnd, stickManSpeed);
     // moveStickMan(1000, 0, 0.2);
     // drawStickMan(500, 20, 0, 0, 1);
+
+    // drawSpearStickMan(500, 0, 0, 0, 1);
+
     glFlush();
+}
+
+void resize(int w, int h) {
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0, 1000, 0, 500);
 }
 
 void keypress(unsigned char key, int x, int y) {
@@ -51,7 +61,7 @@ int main(int argc, char *argv[]) {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutCreateWindow("CG-Project");
     glutDisplayFunc(display);
-    glutReshapeFunc(init);
+    glutReshapeFunc(resize);
     glutKeyboardFunc(keypress);
     init();
     glutMainLoop();
