@@ -1,12 +1,6 @@
 #include <GL/glut.h>
 
-#ifndef HEADER
-#define HEADER #include "circleFunctions.c"
-#endif
-
-void drawSpearStickMan(float x, float displacement, float r, float g, float b) {
-    glColor3f(r, g, b);
-
+void drawSpearStickMan(float x, float displacement) {
     // face
     drawFilledCircle(x, 150, 25);
 
