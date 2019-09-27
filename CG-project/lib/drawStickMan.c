@@ -2,9 +2,7 @@
 #define HEADER #include "circleFunctions.c"
 #endif
 
-void drawStickMan(float x, float displacement, float r, float g, float b) {
-    glColor3f(r, g, b);
-
+void drawStickMan(float x, float displacement) {
     // face
     drawFilledCircle(x, 150, 25);
 

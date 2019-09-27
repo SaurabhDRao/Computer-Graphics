@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <GL/glut.h>
-#include "lib/showIntro.c"
+#include "glutFuncs.c"
+#include "lib/intro/showIntro.c"
 #include "lib/circleFunctions.c"
 #include "lib/background.c"
 #include "lib/drawStickMan.c"
@@ -10,23 +11,10 @@
 
 float stickManStart = 0;
 int stickMaxEnd = 1000;
-float stickManSpeed = 1;
+float stickManSpeed = 3;
 int showingIntroFlag = 1;
 float displacement = 0;
-int flag = 1;
-
-void init() {
-    glClearColor(0, 0, 0, 0);
-    glColor3f(0, 0, 1);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluOrtho2D(0, 1000, 0, 500);
-}
-
-void timer( int value ) {
-    glutTimerFunc( 5, timer, 0 );
-    glutPostRedisplay();
-}
+int dirFlag = 1;
 
 void display() {
     glClearColor(0, 0, 0, 0);
@@ -35,26 +23,18 @@ void display() {
     glutSwapBuffers();
 }
 
-void resize(int w, int h) {
-    glViewport(0, 0, w, h);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluOrtho2D(0, 1000, 0, 500);
-}
-
-void moveStickMan() {
-    drawStickMan(stickManStart, displacement, 1, 1, 1);
+void updateStickManParams() {
     stickManStart += stickManSpeed;
 
-    if(flag)
+    if(dirFlag)
         displacement += stickManSpeed;
     else
         displacement -= stickManSpeed;
     
     if(displacement > (37 * 2))
-        flag = 0;
+        dirFlag = 0;
     else if(displacement < 0)
-        flag = 1;
+        dirFlag = 1;
 }
 
 void drawScene() {
@@ -62,7 +42,9 @@ void drawScene() {
     glClear(GL_COLOR_BUFFER_BIT);
     day();
 
-    moveStickMan();
+    glColor3f(0.094, 0.063, 0.031);
+    drawStickMan(stickManStart, displacement);
+    updateStickManParams();
 
     glutSwapBuffers();
 }
