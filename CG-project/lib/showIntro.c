@@ -20,7 +20,7 @@ void showIntro() {
     for(int i = 0; i < 3; ++i) {
         drawBitMapChar(usns[2 - i], 350, 300 + ROW_SPACE * i, 0);
         drawBitMapChar(names[2 - i], 350 + COL_SPACE, 300 + ROW_SPACE * i, 0);
-        printf("%s %s\n", usns[2 - i], names[2 - i]);
+        // printf("%s %s\n", usns[2 - i], names[2 - i]);
     }
 
     glBegin(GL_POLYGON);

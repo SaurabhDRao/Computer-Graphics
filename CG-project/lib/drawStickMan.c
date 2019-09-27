@@ -1,4 +1,6 @@
-#include "circleFunctions.c"
+#ifndef HEADER
+#define HEADER #include "circleFunctions.c"
+#endif
 
 void drawStickMan(float x, float displacement, float r, float g, float b) {
     glColor3f(r, g, b);

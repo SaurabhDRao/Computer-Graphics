@@ -6,7 +6,6 @@
 void moveStickMan(float xStart, float xEnd, float speed) {
     float displacement = 0;
     int flag = 1;
-
     if(xStart < xEnd) {
         for(float i = xStart; i <= xEnd; i += speed) {
             glClear(GL_COLOR_BUFFER_BIT); 
