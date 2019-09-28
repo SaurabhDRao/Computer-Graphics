@@ -3,72 +3,71 @@
 #include "background.c"
 #include "drawStickMan.c"
 #include "drawSpearStickMan.c"
+#include "../headers/flag.h"
 
-float stickManStart = 0;
-float stickManEnd = 1100;
-float spearStickManStart = 1000;
-float spearStickManEnd = -100;
-float stickManSpeed = 3;
-float spearStickManSpeed = 3;
-int showingIntroFlag = 1;
-float stickManDisp = 0;
-float spearStickManDisp = 0;
-int stickManLimbFlag = 1;
-int spearStickManLimbFlag = 1;
+#define N 2
 
-void updateStickManParams(char startDir) {
-    if(startDir == 'L') {
-        stickManStart += stickManSpeed;
+typedef struct {
+    float xStart, xEnd, speed, displacement;
+    int limbFlag, moveFlag;
+    /* 
+    ---stick man types---
+    n - normal, s - spear
+    */
+    char type;
+    float r, g, b;
+} StickMan;
 
-        if(stickManLimbFlag)
-            stickManDisp += stickManSpeed;
-        else
-            stickManDisp -= stickManSpeed;
-        
-        if(stickManDisp > (37 * 2))
-            stickManLimbFlag = 0;
-        else if(stickManDisp < 0)
-            stickManLimbFlag = 1;
-    } else {
-        stickManStart -= stickManSpeed;
+StickMan stickMan[N];
+float xStarts[N] = { 0, 1100 };
+float xEnds[N] = { 1100, -100 };
+float speeds[N] = { 3, 3 };
+float displacements[N] = { 0, 0 };
+int limbFlags[N] = { 1, 1 };
+int moveFlags[N] = { 1, 1 };
+char types[N] = { 'n', 's' };
+float rs[N] = { 0.094, 0 };
+float gs[N] = { 0.063, 0 };
+float bs[N] = { 0.031, 0 };
 
-        if(stickManLimbFlag)
-            stickManDisp -= stickManSpeed;
-        else
-            stickManDisp += stickManSpeed;
-        
-        if(stickManDisp > (37 * 2))
-            stickManLimbFlag = 1;
-        else if(stickManDisp < 0)
-            stickManLimbFlag = 0;
-    }
+void initStickMan(StickMan *sm, int index) {
+    sm->xStart = xStarts[index];
+    sm->xEnd = xEnds[index];
+    sm->speed = speeds[index];
+    sm->displacement = displacements[index];
+    sm->limbFlag = limbFlags[index];
+    sm->moveFlag = moveFlags[index];
+    sm->type = types[index];
+    sm->r = rs[index];
+    sm->g = gs[index];
+    sm->b = bs[index];
 }
 
-void updateSpearStickManParams(char startDir) {
+void updateStickManParams(StickMan *sm, char startDir) {
     if(startDir == 'L') {
-        spearStickManStart += spearStickManSpeed;
+        sm->xStart += sm->speed;
 
-        if(spearStickManLimbFlag)
-            spearStickManDisp += spearStickManSpeed;
+        if(sm->limbFlag)
+            sm->displacement += sm->speed;
         else
-            spearStickManDisp -= spearStickManSpeed;
+            sm->displacement -= sm->speed;
         
-        if(spearStickManDisp > (37 * 2))
-            spearStickManLimbFlag = 0;
-        else if(spearStickManDisp < 0)
-            spearStickManLimbFlag = 1;
+        if(sm->displacement > (37 * 2))
+            sm->limbFlag = 0;
+        else if(sm->displacement < 0)
+            sm->limbFlag = 1;
     } else {
-        spearStickManStart -= spearStickManSpeed;
+        sm->xStart -= sm->speed;
 
-        if(spearStickManLimbFlag)
-            spearStickManDisp -= spearStickManSpeed;
+        if(sm->limbFlag)
+            sm->displacement -= sm->speed;
         else
-            spearStickManDisp += spearStickManSpeed;
+            sm->displacement += sm->speed;
         
-        if(spearStickManDisp > (37 * 2))
-            spearStickManLimbFlag = 1;
-        else if(spearStickManDisp < 0)
-            spearStickManLimbFlag = 0;
+        if(sm->displacement > (37 * 2))
+            sm->limbFlag = 1;
+        else if(sm->displacement < 0)
+            sm->limbFlag = 0;
     }
 }
 
@@ -77,23 +76,34 @@ void drawScene() {
     glClear(GL_COLOR_BUFFER_BIT);
     day();
 
-    glColor3f(0.094, 0.063, 0.031);
-    if(stickManStart < stickManEnd) {
-        drawStickMan(stickManStart, stickManDisp);
-        updateStickManParams('L');
-    } else {
-        drawStickMan(stickManStart, stickManDisp);
-        updateStickManParams('R');
+    if(!initStickManStructFlag) {
+        for(int i = 0; i < N; ++i) {
+            initStickMan(&stickMan[i], i);
+        }
+        initStickManStructFlag = 1;
     }
 
-    glColor3f(0, 0, 0);
-    if(spearStickManStart < spearStickManEnd) {
-        drawSpearStickMan(spearStickManStart, spearStickManDisp);
-        updateSpearStickManParams('L');
-    } else {
-        drawSpearStickMan(spearStickManStart, spearStickManDisp);
-        updateSpearStickManParams('R');
+    for(int i = 0; i < N; ++i) {
+        if(stickMan[i].type == 'n') {
+            glColor3f(stickMan[i].r, stickMan[i].g, stickMan[i].b);
+            drawStickMan(stickMan[i].xStart, stickMan[i].displacement);
+        } else if(stickMan[i].type == 's') {
+            glColor3f(stickMan[i].r, stickMan[i].g, stickMan[i].b);
+            drawSpearStickMan(stickMan[i].xStart, stickMan[i].displacement);
+        }
+        if(stickMan[i].moveFlag) {
+            if(stickMan[i].xStart < stickMan[i].xEnd) {
+                updateStickManParams(&stickMan[i], 'L');
+                if(stickMan[i].xStart > stickMan[i].xEnd) 
+                    stickMan[i].moveFlag = 0;
+            }else {
+                updateStickManParams(&stickMan[i], 'R');
+                if(stickMan[i].xStart < stickMan[i].xEnd) 
+                    stickMan[i].moveFlag = 0;
+            }
+        }
     }
+
 
     glutSwapBuffers();
 }

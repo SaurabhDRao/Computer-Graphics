@@ -3,7 +3,6 @@
 #include<stdio.h>
 #include <stdlib.h>
 
-
 void tree()
 {
     glColor3f(0.3, 0.1, 0.0);

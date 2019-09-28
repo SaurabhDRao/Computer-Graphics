@@ -7,6 +7,9 @@
 #define WINDOW_WIDTH 1533
 #define WINDOW_HEIGHT 845
 
+int showingIntroFlag = 1;
+int initStickManStructFlag = 0;
+
 void display() {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -22,6 +25,7 @@ void keypress(unsigned char key, int x, int y) {
             showingIntroFlag = 0;
         }
     } else if(key == 'r') {
+        initStickManStructFlag = 0;
         glutPostRedisplay();
         glutDisplayFunc(drawScene);
     } else if(key == 'q') {
