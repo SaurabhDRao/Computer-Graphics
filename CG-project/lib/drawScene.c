@@ -5,7 +5,7 @@
 #include "drawSpearStickMan.c"
 #include "../headers/flag.h"
 
-#define N 2
+#define N 3
 
 typedef struct {
     float xStart, xEnd, speed, displacement;
@@ -19,16 +19,16 @@ typedef struct {
 } StickMan;
 
 StickMan stickMan[N];
-float xStarts[N] = { 0, 1100 };
-float xEnds[N] = { 1100, -100 };
-float speeds[N] = { 3, 3 };
-float displacements[N] = { 0, 0 };
-int limbFlags[N] = { 1, 1 };
-int moveFlags[N] = { 1, 1 };
-char types[N] = { 'n', 's' };
-float rs[N] = { 0.094, 0 };
-float gs[N] = { 0.063, 0 };
-float bs[N] = { 0.031, 0 };
+float xStarts[N] = { 100, 700, 0 };
+float xEnds[N] = { 1100, -100, 1100 };
+float speeds[N] = { 3, 3, 3 };
+float displacements[N] = { 0, 0, 0 };
+int limbFlags[N] = { 1, 1, 1 };
+int moveFlags[N] = { 0, 0, 1 };
+char types[N] = { 'n', 's', 's' };
+float rs[N] = { 0.094, 0, 1 };
+float gs[N] = { 0.063, 0, 1 };
+float bs[N] = { 0.031, 0, 1 };
 
 void initStickMan(StickMan *sm, int index) {
     sm->xStart = xStarts[index];
@@ -74,7 +74,7 @@ void updateStickManParams(StickMan *sm, char startDir) {
 void drawScene() {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
-    day();
+    drawBackground();
 
     if(!initStickManStructFlag) {
         for(int i = 0; i < N; ++i) {
@@ -94,12 +94,14 @@ void drawScene() {
         if(stickMan[i].moveFlag) {
             if(stickMan[i].xStart < stickMan[i].xEnd) {
                 updateStickManParams(&stickMan[i], 'L');
-                if(stickMan[i].xStart > stickMan[i].xEnd) 
+                if(stickMan[i].xStart > stickMan[i].xEnd) {
                     stickMan[i].moveFlag = 0;
+                }
             }else {
                 updateStickManParams(&stickMan[i], 'R');
-                if(stickMan[i].xStart < stickMan[i].xEnd) 
+                if(stickMan[i].xStart < stickMan[i].xEnd)  {
                     stickMan[i].moveFlag = 0;
+                }
             }
         }
     }
