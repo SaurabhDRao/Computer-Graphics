@@ -19,8 +19,8 @@ typedef struct {
 } StickMan;
 
 StickMan stickMan[N];
-float xStarts[N] = { 100, 700, 0 };
-float xEnds[N] = { 1100, -100, 1100 };
+float xStarts[N] = { 100, 700, 1000 };
+float xEnds[N] = { 1100, -100, -100 };
 float yStarts[N] = { 50, 40, 30 };
 float speeds[N] = { 3, 3, 3 };
 float displacements[N] = { 0, 0, 0 };
