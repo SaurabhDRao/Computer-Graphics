@@ -48,14 +48,14 @@ void drawSpearStickMan(float x, float y, float displacement) {
     glRotatef(45.0, 0.0, 0.0,1.0);
 
     if(displacement < 37)
-        glTranslatef(0 - (x + 20), 0 - (y + 75 + displacement), 0.0);
+        glTranslatef(0 - (x + 25), 0 - (y + 75 + displacement), 0.0);
     else
-        glTranslatef(0 - (x + 37), 0 - (y + 75 + displacement - 17), 0.0);
+        glTranslatef(0 - (x + 40), 0 - (y + 75 + displacement - (displacement / 5)), 0.0);
 
     glColor3f(1, 0, 0);
     glBegin(GL_POLYGON);
-        glVertex2f(x - 2 + displacement, y);
-        glVertex2f(x + 2 + displacement, y);
+        glVertex2f(x - 2 + displacement, y + 20);
+        glVertex2f(x + 2 + displacement, y + 20);
         glVertex2f(x + 2 + displacement, 150 + y);
         glVertex2f(x - 2 + displacement, 150 + y);
     glEnd();

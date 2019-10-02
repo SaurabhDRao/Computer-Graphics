@@ -9,6 +9,7 @@
 
 int showingIntroFlag = 1;
 int initStickManStructFlag = 0;
+int initDeerStructFlag = 0;
 
 void display() {
     glClearColor(0, 0, 0, 0);
@@ -26,6 +27,7 @@ void keypress(unsigned char key, int x, int y) {
         }
     } else if(key == 'r') {
         initStickManStructFlag = 0;
+        initDeerStructFlag = 0;
         glutPostRedisplay();
         glutDisplayFunc(drawScene);
     } else if(key == 'q') {
