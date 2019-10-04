@@ -28,15 +28,31 @@ void drawDeer(float x, float y, float displacement) {
     glEnd();
 
     // horns
+    // horn 1
     glBegin(GL_POLYGON);
         glVertex2f(x, 100 + y);
         glVertex2f(x - 3, 100 + y);
         glVertex2f(x - 25, 120 + y);
     glEnd();
+    glBegin(GL_LINE_LOOP);
+        glVertex2f(x - 15, 112 + y);
+        glVertex2f(x - 15, 111 + y);
+        glVertex2f(x - 25, 105 + y);
+        glVertex2f(x - 45, 111 + y);
+        glVertex2f(x - 25, 105 + y);
+    glEnd();
+    // horn 2
     glBegin(GL_POLYGON);
         glVertex2f(x - 3, 100 + y);
         glVertex2f(x - 7, 100 + y);
         glVertex2f(x - 35, 120 + y);
+    glEnd();
+    glBegin(GL_LINE_LOOP);
+        glVertex2f(x - 25, 112 + y);
+        glVertex2f(x - 25, 111 + y);
+        glVertex2f(x - 30, 110 + y);
+        glVertex2f(x - 55, 115 + y);
+        glVertex2f(x - 30, 110 + y);
     glEnd();
 
     // front legs

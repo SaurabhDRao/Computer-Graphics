@@ -26,7 +26,7 @@ void drawScene() {
             drawStickMan(stickMan[i].xStart, stickMan[i].yStart, stickMan[i].displacement);
         } else if(stickMan[i].type == 's') {
             glColor3f(stickMan[i].r, stickMan[i].g, stickMan[i].b);
-            drawSpearStickMan(stickMan[i].xStart, stickMan[i].yStart, stickMan[i].displacement);
+            drawSpearStickMan(stickMan[i].xStart, stickMan[i].yStart, stickMan[i].angle, stickMan[i].displacement);
         }
         if(stickMan[i].moveFlag) {
             if(stickMan[i].xStart < stickMan[i].xEnd) {
@@ -38,6 +38,14 @@ void drawScene() {
                 updateStickManParams(&stickMan[i], 'R');
                 if(stickMan[i].xStart < stickMan[i].xEnd)  {
                     stickMan[i].moveFlag = 0;
+                }
+            }
+        } else {
+            if (stickMan[i].type == 's') {
+                if (stickMan[i].angle < 90)
+                    stickMan[i].angle += 3;
+                else {
+                    
                 }
             }
         }
@@ -67,6 +75,8 @@ void drawScene() {
             }
         }
     }
+
+    // drawDeer(500, 20, 0);
 
     glutSwapBuffers();
 }

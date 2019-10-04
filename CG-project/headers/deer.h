@@ -8,15 +8,15 @@ typedef struct {
 
 Deer deer[N_DEERS];
 float deerXStarts[N_DEERS] = { -100 };
-float deerXEnds[N_DEERS] = { 1100 };
+float deerXEnds[N_DEERS] = { 150 };
 float deerYStarts[N_DEERS] = { 20 };
 float deerSpeeds[N_DEERS] = { 3 };
 float deerDisps[N_DEERS] = { 0 };
 int deerLimbFlags[N_DEERS] = { 1 };
 int deerMoveFlags[N_DEERS] = { 1 };
-float deerRs[N_DEERS] = { 139 };
-float deerGs[N_DEERS] = { 69 };
-float deerBs[N_DEERS] = { 19 };
+float deerRs[N_DEERS] = { 100 };
+float deerGs[N_DEERS] = { 0 };
+float deerBs[N_DEERS] = { 0 };
 
 void initDeer(Deer *d, int index) {
     d->xStart = deerXStarts[index];

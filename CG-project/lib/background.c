@@ -54,10 +54,11 @@ void drawBackground() {
 	glEnd();
 
 	// GROUND
-	glColor3f(0.0,0.6,0.0);
     glBegin(GL_POLYGON);
+        glColor3ub(124, 252, 0);
         glVertex2f(0,150);
         glVertex2f(1000,150);
+	    glColor3f(0.0,0.6,0.0);
         glVertex2f(1000,0);
         glVertex2f(0,0);
 	glEnd();
