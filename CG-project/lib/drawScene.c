@@ -7,6 +7,7 @@
 #include "../headers/stickMan.h"
 #include "../headers/deer.h"
 #include "drawDeer.c"
+#include "drawHuntScene.c"
 
 float colors[N_STICKMANS][3];
 
@@ -132,6 +133,12 @@ void drawScene() {
     }
 
     // drawDeer(500, 20, 0);
+
+    if(stickMan[2].spearX >= 1000) {
+        initDeerStructFlag = 0;
+        glutDisplayFunc(drawHuntScene);
+        glutPostRedisplay();
+    }
 
     glutSwapBuffers();
 }
