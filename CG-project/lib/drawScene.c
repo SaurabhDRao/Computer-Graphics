@@ -10,6 +10,16 @@
 
 float colors[N_STICKMANS][3];
 
+int bscount = 0;
+
+void flipDeer() {
+    for(int j = 0; j < N_DEERS; ++j) {
+        deer[j].moveFlag = 1;
+        deer[j].speed = 6;
+    }
+    flipDeerFlag = 1;
+}
+
 void drawScene() {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -54,8 +64,8 @@ void drawScene() {
                     stickMan[i].spearAngle += 3;
                     if (stickMan[i].spearAngle == 90)
                         stickMan[i].spearLoweredFlag = 1;
-                }
-                else {
+                } else {
+                    flipDeer();
                     if(!stickMan[i].handRisedFlag) {
                         stickMan[i].handY += 2;
                         stickMan[i].spearAngle -= 0.2;
@@ -63,17 +73,17 @@ void drawScene() {
                             stickMan[i].handRisedFlag = 1;
                     } else if((stickMan[i].handX <= 50) && (stickMan[i].handMovedBackFlag != -1)) {
                         if(!stickMan[i].handMovedBackFlag)
-                            stickMan[i].handX += 2;
+                            stickMan[i].handX += 5;
                         else if(stickMan[i].handX > 0)
-                            stickMan[i].handX -= 2;
+                            stickMan[i].handX -= 5;
                         else
                             stickMan[i].handMovedBackFlag = -1;
 
                         if(stickMan[i].handX == 50)
                             stickMan[i].handMovedBackFlag = 1;
                     } else if(stickMan[i].handMovedBackFlag == -1) {
-                        stickMan[i].spearX += 4;
-                        stickMan[i].spearY += 2;
+                        stickMan[i].spearX += 10;
+                        stickMan[i].spearY += 5;
                     }
                 }
             }
@@ -89,17 +99,33 @@ void drawScene() {
 
     for(int i = 0; i < N_DEERS; ++i) {
         glColor3ub(deer[i].r, deer[i].g, deer[i].b);
-        drawDeer(deer[i].xStart, deer[i].yStart, deer[i].displacement);
+        if(flipDeerFlag) {
+            glPushMatrix();
+            glTranslatef(deer[i].xStart, deer[i].yStart, 0);
+            glRotatef(180, 0, 1, 0);
+            glTranslatef(0 - deer[i].xStart,0 - deer[i].yStart, 0);
+            drawDeer(deer[i].xStart, deer[i].yStart, deer[i].displacement);
+            glPopMatrix();
+        } else {
+            drawDeer(deer[i].xStart, deer[i].yStart, deer[i].displacement);
+        }
         if(deer[i].moveFlag) {
-            if(deer[i].xStart < deer[i].xEnd) {
-                updateDeerParams(&deer[i], 'L');
-                if(deer[i].xStart > deer[i].xEnd) {
-                    deer[i].moveFlag = 0;
-                }
-            }else {
+            if(flipDeerFlag) {
                 updateDeerParams(&deer[i], 'R');
                 if(deer[i].xStart < deer[i].xEnd)  {
                     deer[i].moveFlag = 0;
+                }
+            } else {
+                if(deer[i].xStart < deer[i].xEnd) {
+                    updateDeerParams(&deer[i], 'L');
+                    if(deer[i].xStart >= deer[i].xEnd) {
+                        deer[i].moveFlag = 0;
+                    }
+                }else {
+                    updateDeerParams(&deer[i], 'R');
+                    if(deer[i].xStart < deer[i].xEnd)  {
+                        deer[i].moveFlag = 0;
+                    }
                 }
             }
         }

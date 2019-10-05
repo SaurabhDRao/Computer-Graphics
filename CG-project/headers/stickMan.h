@@ -15,7 +15,7 @@ typedef struct {
 
 StickMan stickMan[N_STICKMANS];
 
-float stickManXStarts[N_STICKMANS] = { -100, 1100, 1000 };
+float stickManXStarts[N_STICKMANS] = { -100, 2100, 2000 };
 float stickManXEnds[N_STICKMANS] = { -1100, 900, 850 };
 float stickManYStarts[N_STICKMANS] = { 50, 40, 30 };
 
@@ -29,7 +29,7 @@ float stickManSpearYs[N_STICKMANS] = { 0, 0, 0 };
 float stickManSpearXs[N_STICKMANS] = { 0, 0, 0 };
 
 int stickManLimbFlags[N_STICKMANS] = { 1, 1, 1 };
-int stickManMoveFlags[N_STICKMANS] = { 0, 1, 1 };
+int stickManMoveFlags[N_STICKMANS] = { 1, 1, 1 };
 int stickManSpearLoweredFlags[N_STICKMANS] = { 0, 0, 0 };
 int stickManHandRisedFlags[N_STICKMANS] = { 0, 0, 0 };
 int stickManHandMovedBackFlags[N_STICKMANS] = { 0, 0, 0 };

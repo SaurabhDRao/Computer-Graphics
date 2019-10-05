@@ -8,7 +8,7 @@ typedef struct {
 
 Deer deer[N_DEERS];
 float deerXStarts[N_DEERS] = { -100, -200, -450 };
-float deerXEnds[N_DEERS] = { 150, 250, 100 };
+float deerXEnds[N_DEERS] = { 450, 150, 100 };
 float deerYStarts[N_DEERS] = { 40, 25, 10 };
 float deerSpeeds[N_DEERS] = { 3, 4, 5 };
 float deerDisps[N_DEERS] = { 0, 0, 0 };
