@@ -2,7 +2,7 @@
 
 typedef struct {
     float xStart, xEnd, yStart, speed, displacement;
-    int limbFlag, moveFlag;
+    int limbFlag, moveFlag, deadFlag;
     int r, g, b;
 } Deer;
 
@@ -14,6 +14,7 @@ float deerSpeeds[N_DEERS] = { 3, 4, 5 };
 float deerDisps[N_DEERS] = { 0, 0, 0 };
 int deerLimbFlags[N_DEERS] = { 1, 1, 1 };
 int deerMoveFlags[N_DEERS] = { 1, 1, 1 };
+int deerDeadFlags[N_DEERS] = { 0, 0, 0 };
 float deerRs[N_DEERS] = { 100, 159, 255 };
 float deerGs[N_DEERS] = { 0, 100, 0 };
 float deerBs[N_DEERS] = { 0, 0, 0 };
@@ -26,6 +27,7 @@ void initDeer(Deer *d, int index) {
     d->displacement = deerDisps[index];
     d->limbFlag = deerLimbFlags[index];
     d->moveFlag = deerMoveFlags[index];
+    d->deadFlag = deerDeadFlags[index];
     d->r = deerRs[index];
     d->g = deerGs[index];
     d->b = deerBs[index];

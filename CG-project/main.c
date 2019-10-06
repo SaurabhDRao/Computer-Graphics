@@ -11,6 +11,8 @@ int showingIntroFlag = 1;
 int initStickManStructFlag = 0;
 int initDeerStructFlag = 0;
 int flipDeerFlag = 0;
+float spearX = 2000, spearY = 600;
+int spearKillFlag = 0;
 
 void display() {
     glClearColor(0, 0, 0, 0);
@@ -30,6 +32,9 @@ void keypress(unsigned char key, int x, int y) {
         initStickManStructFlag = 0;
         initDeerStructFlag = 0;
         flipDeerFlag = 0;
+        spearX = 2000;
+        spearY = 600;
+        spearKillFlag = 0;
         glutPostRedisplay();
         glutDisplayFunc(drawScene);
     } else if(key == 'q') {

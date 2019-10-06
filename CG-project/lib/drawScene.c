@@ -24,7 +24,7 @@ void flipDeer() {
 void drawScene() {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
-    drawBackground();
+    drawBackgroundWithTree();
 
     if(!initStickManStructFlag) {
         for(int i = 0; i < N_STICKMANS; ++i) {

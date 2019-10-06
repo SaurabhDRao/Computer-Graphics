@@ -38,7 +38,7 @@ void sun() {
     glFlush();
 }
 
-void drawBackground() {
+void drawBackgroundWithTree() {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1.0, 1.0, 1.0);
 
@@ -65,5 +65,34 @@ void drawBackground() {
 	glFlush();
 
 	tree();
+    sun();
+}
+
+void drawBackgroundWithoutTree() {
+    glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(1.0, 1.0, 1.0);
+
+    // SKY
+    // glColor3ub(100, 149, 237);
+    glBegin(GL_POLYGON);
+        glColor3ub(135, 206, 235);
+        glVertex2f(0,150);
+        glVertex2f(1000,150);
+        glColor3ub(65, 105, 225);
+        glVertex2f(1000,500);
+        glVertex2f(0,500);
+	glEnd();
+
+	// GROUND
+    glBegin(GL_POLYGON);
+        glColor3ub(124, 252, 0);
+        glVertex2f(0,150);
+        glVertex2f(1000,150);
+	    glColor3f(0.0,0.6,0.0);
+        glVertex2f(1000,0);
+        glVertex2f(0,0);
+	glEnd();
+	glFlush();
+
     sun();
 }
