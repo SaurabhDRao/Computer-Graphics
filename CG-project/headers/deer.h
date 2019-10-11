@@ -1,4 +1,4 @@
-#define N_DEERS 3
+#define N_DEERS 5
 
 typedef struct {
     float xStart, xEnd, yStart, speed, displacement;
@@ -7,17 +7,17 @@ typedef struct {
 } Deer;
 
 Deer deer[N_DEERS];
-float deerXStarts[N_DEERS] = { -100, -200, -450 };
-float deerXEnds[N_DEERS] = { 450, 150, 100 };
-float deerYStarts[N_DEERS] = { 40, 25, 10 };
-float deerSpeeds[N_DEERS] = { 3, 4, 5 };
-float deerDisps[N_DEERS] = { 0, 0, 0 };
-int deerLimbFlags[N_DEERS] = { 1, 1, 1 };
-int deerMoveFlags[N_DEERS] = { 1, 1, 1 };
-int deerDeadFlags[N_DEERS] = { 0, 0, 0 };
-float deerRs[N_DEERS] = { 100, 159, 255 };
-float deerGs[N_DEERS] = { 0, 100, 0 };
-float deerBs[N_DEERS] = { 0, 0, 0 };
+float deerXStarts[N_DEERS] = { -100, -200, -450, -150, -200 };
+float deerXEnds[N_DEERS] = { 450, 150, 100, 350, 250 };
+float deerYStarts[N_DEERS] = { 40, 25, 20, 15, 10 };
+float deerSpeeds[N_DEERS] = { 3, 4, 5, 3.5, 4.5 };
+float deerDisps[N_DEERS] = { 0, 0, 0, 0, 0 };
+int deerLimbFlags[N_DEERS] = { 1, 1, 1, 1, 1 };
+int deerMoveFlags[N_DEERS] = { 1, 1, 1, 1, 1 };
+int deerDeadFlags[N_DEERS] = { 0, 0, 0, 0, 0 };
+float deerRs[N_DEERS] = { 100, 159, 255, 170, 100 };
+float deerGs[N_DEERS] = { 0, 100, 0, 120, 0 };
+float deerBs[N_DEERS] = { 0, 0, 0, 0, 0 };
 
 void initDeer(Deer *d, int index) {
     d->xStart = deerXStarts[index];

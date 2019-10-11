@@ -11,8 +11,12 @@ int showingIntroFlag = 1;
 int initStickManStructFlag = 0;
 int initDeerStructFlag = 0;
 int flipDeerFlag = 0;
-float spearX = 2000, spearY = 600;
+float spearY = 650;
 int spearKillFlag = 0;
+int stopSpearFlag = 0;
+float bloodY = 100;
+float groundBlood = 0;
+float distUntilDead = 100;
 
 void display() {
     glClearColor(0, 0, 0, 0);
@@ -32,9 +36,12 @@ void keypress(unsigned char key, int x, int y) {
         initStickManStructFlag = 0;
         initDeerStructFlag = 0;
         flipDeerFlag = 0;
-        spearX = 2000;
-        spearY = 600;
+        spearY = 650;
         spearKillFlag = 0;
+        stopSpearFlag = 0;
+        bloodY = 100;
+        groundBlood = 0;
+        distUntilDead = 100;
         glutPostRedisplay();
         glutDisplayFunc(drawScene);
     } else if(key == 'q') {

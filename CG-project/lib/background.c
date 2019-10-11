@@ -46,8 +46,8 @@ void drawBackgroundWithTree() {
     glColor3ub(100, 149, 237);
     glBegin(GL_POLYGON);
         glColor3ub(173, 216, 230);
-        glVertex2f(0,150);
-        glVertex2f(1000,150);
+        glVertex2f(0,100);
+        glVertex2f(1000,100);
         glColor3ub(100, 149, 237);
         glVertex2f(1000,500);
         glVertex2f(0,500);
@@ -56,8 +56,8 @@ void drawBackgroundWithTree() {
 	// GROUND
     glBegin(GL_POLYGON);
         glColor3ub(124, 252, 0);
-        glVertex2f(0,150);
-        glVertex2f(1000,150);
+        glVertex2f(0,100);
+        glVertex2f(1000,100);
 	    glColor3f(0.0,0.6,0.0);
         glVertex2f(1000,0);
         glVertex2f(0,0);
@@ -76,8 +76,8 @@ void drawBackgroundWithoutTree() {
     // glColor3ub(100, 149, 237);
     glBegin(GL_POLYGON);
         glColor3ub(135, 206, 235);
-        glVertex2f(0,150);
-        glVertex2f(1000,150);
+        glVertex2f(0,100);
+        glVertex2f(1000,100);
         glColor3ub(65, 105, 225);
         glVertex2f(1000,500);
         glVertex2f(0,500);
@@ -86,8 +86,8 @@ void drawBackgroundWithoutTree() {
 	// GROUND
     glBegin(GL_POLYGON);
         glColor3ub(124, 252, 0);
-        glVertex2f(0,150);
-        glVertex2f(1000,150);
+        glVertex2f(0,100);
+        glVertex2f(1000,100);
 	    glColor3f(0.0,0.6,0.0);
         glVertex2f(1000,0);
         glVertex2f(0,0);

@@ -11,8 +11,6 @@
 
 float colors[N_STICKMANS][3];
 
-int bscount = 0;
-
 void flipDeer() {
     for(int j = 0; j < N_DEERS; ++j) {
         deer[j].moveFlag = 1;
