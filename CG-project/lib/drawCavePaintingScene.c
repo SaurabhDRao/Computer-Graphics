@@ -7,34 +7,97 @@
 float ySpeed = 0.5;
 float xSpeed = 0.2;
 
+int paintingFlag = 0;
+
+float paintingPointsX[10000] = {0}, paintingPointsY[10000] = {0};
+int painingIndex = -1;
+
+float PAINT_X = 40, PAINT_Y = 255;
+float paintX = 40, paintY = 255;
+
 void drawCavePaintingScene() {
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
 
     drawCave();
 
-    drawPainting(30, 250, 50, 240);
-    drawPainting(130, 350, 150, 340);
-    drawPainting(230, 380, 250, 370);
-    drawPainting(330, 250, 350, 240);
-    drawPainting(430, 300, 450, 290);
-    drawPainting(100, 270, 120, 260);
-    drawPainting(200, 330, 220, 320);
-    drawPainting(300, 230, 320, 220);
-    drawPainting(400, 300, 420, 290);
-    drawPainting(500, 310, 520, 300);
+    // drawPainting(30, 250, 50, 240);
+    // drawPainting(130, 350, 150, 340);
+
+    // glBegin(GL_LINES);
+    //     glColor3f(0, 0, 0);
+    //     glVertex2f(PAINT_X, PAINT_Y);
+    //     glVertex2f(paintX, paintY);
+    // glEnd();
+
+    glBegin(GL_POINTS);
+        for(int i = 0; i < painingIndex; ++i) {
+            glColor3f(0, 0, 0);
+            glVertex2f(paintingPointsX[i], paintingPointsY[i]);
+        }
+    glEnd();
 
     drawCavePaintingStickMan(100, 80, 20, 35, 45, xDisp, yDisp);
 
-    if(handSpearMovementFlag)
-        yDisp += ySpeed, xDisp += xSpeed;
-    else
-        yDisp -= ySpeed, xDisp -= xSpeed;
+    if(paintingFlag == 0) {
+        paintX -= xSpeed;
+        paintY -= ySpeed;
+        paintingPointsX[++painingIndex] = paintX;
+        paintingPointsY[painingIndex] = paintY;
+        yDisp -= ySpeed;
+        xDisp -= xSpeed;
+    } else if(paintingFlag == 1) {
+        if(paintY < 240 && paintX < 30) {
+            PAINT_X = paintX;
+            PAINT_Y = paintY;
+        }
+        paintX += xSpeed;
+        paintingPointsX[++painingIndex] = paintX;
+        paintingPointsY[painingIndex] = paintY;
+        xDisp += xSpeed;
+    } else if(paintingFlag == 2) {
+        if(paintX > 40) {
+            PAINT_X = paintX;
+            PAINT_Y = paintY;
+        }
+        paintX -= xSpeed;
+        paintY += ySpeed;
+        paintingPointsX[++painingIndex] = paintX;
+        paintingPointsY[painingIndex] = paintY;
+        xDisp -= xSpeed;
+        yDisp += ySpeed;
+    } else if(paintingFlag == 3) {
+        if(paintY > 255 && paintX < 30) {
+            PAINT_X = paintX;
+            PAINT_Y = paintY;
+        }
+        paintX += xSpeed;
+        paintingPointsX[++painingIndex] = paintX;
+        paintingPointsY[painingIndex] = paintY;
+        xDisp += xSpeed;
+    } else {
+
+    }
+
+    if((paintY < 240 && paintX < 30) && !paintingFlag)
+        paintingFlag = 1;
+    else if(paintX > 40 && (paintingFlag == 1)) 
+        paintingFlag = 2;
+    else if((paintX < 30 && paintY > 255) && (paintingFlag == 2))
+        paintingFlag = 3;
+    else if(paintX > 40 && (paintingFlag == 3)) 
+        paintingFlag = 4;
+
+
+    // if(handSpearMovementFlag)
+    //     yDisp += ySpeed, xDisp += xSpeed, stopPaintingFlag = 1;
+    // else
+    //     yDisp -= ySpeed, xDisp -= xSpeed;
     
-    if(yDisp < (-25))
-        handSpearMovementFlag = 1;
-    else if(yDisp > 0)
-        handSpearMovementFlag = 0; 
+    // if(yDisp < (-25))
+    //     handSpearMovementFlag = 1;
+    // else if(yDisp > 0)
+    //     handSpearMovementFlag = 0; 
 
     glutSwapBuffers();
 }
