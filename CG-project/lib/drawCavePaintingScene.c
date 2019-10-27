@@ -56,7 +56,7 @@ void drawCavePaintingScene() {
         paintingPointsY[painingIndex] = paintY;
         xDisp += xSpeed;
     } else if(paintingFlag == 2) {
-        if(paintX > 40) {
+        if(paintX > 50) {
             PAINT_X = paintX;
             PAINT_Y = paintY;
         }
@@ -67,26 +67,57 @@ void drawCavePaintingScene() {
         xDisp -= xSpeed;
         yDisp += ySpeed;
     } else if(paintingFlag == 3) {
-        if(paintY > 255 && paintX < 30) {
-            PAINT_X = paintX;
-            PAINT_Y = paintY;
+        if(paintY > 255) {
+            PAINT_X = 30;
+            PAINT_Y = 250;
+            paintX = PAINT_X;
+            paintY = PAINT_Y;
+            xDisp = -10;
+            yDisp = -5;
         }
         paintX += xSpeed;
         paintingPointsX[++painingIndex] = paintX;
         paintingPointsY[painingIndex] = paintY;
         xDisp += xSpeed;
+    } else if(paintingFlag == 4) {
+        if(paintX > 50) {
+            PAINT_X = paintX;
+            PAINT_Y = paintY;
+        }
+        paintX -= xSpeed;
+        paintY -= ySpeed;
+        paintingPointsX[++painingIndex] = paintX;
+        paintingPointsY[painingIndex] = paintY;
+        yDisp -= ySpeed;
+        xDisp -= xSpeed;
+    } else if(paintingFlag == 5) {
+        if(paintY > 225) {
+            PAINT_X = paintX;
+            PAINT_Y = paintY;
+        }
+        paintX -= xSpeed;
+        paintY += ySpeed;
+        paintingPointsX[++painingIndex] = paintX;
+        paintingPointsY[painingIndex] = paintY;
+        yDisp += ySpeed;
+        xDisp -= xSpeed;
     } else {
-
+        xDisp = 10;
+        yDisp = -50;
     }
 
     if((paintY < 240 && paintX < 30) && !paintingFlag)
         paintingFlag = 1;
-    else if(paintX > 40 && (paintingFlag == 1)) 
+    else if(paintX > 50 && (paintingFlag == 1)) 
         paintingFlag = 2;
-    else if((paintX < 30 && paintY > 255) && (paintingFlag == 2))
+    else if((paintY > 255) && (paintingFlag == 2))
         paintingFlag = 3;
-    else if(paintX > 40 && (paintingFlag == 3)) 
+    else if(paintX > 50 && (paintingFlag == 3)) 
         paintingFlag = 4;
+    else if((paintY < 225) && (paintingFlag == 4))
+        paintingFlag = 5;
+    else if((paintY > 250) && (paintingFlag == 5)) 
+        paintingFlag = 6;
 
 
     // if(handSpearMovementFlag)
