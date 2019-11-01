@@ -2,8 +2,7 @@
 #include <GL/glut.h>
 #include "glutFuncs.c"
 #include "lib/intro/showIntro.c"
-#include "lib/drawScene.c"
-#include "lib/drawCavePaintingScene.c"
+#include "lib/scene_1.c"
 
 #define WINDOW_WIDTH 1533
 #define WINDOW_HEIGHT 845
@@ -35,7 +34,7 @@ void keypress(unsigned char key, int x, int y) {
     if(key == 's') {
         if(showingIntroFlag) {
             glutPostRedisplay();
-            glutDisplayFunc(drawScene);
+            glutDisplayFunc(scene_1);
             showingIntroFlag = 0;
             showingCavePainitingScene = 0;
         }

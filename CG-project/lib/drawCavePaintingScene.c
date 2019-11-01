@@ -10,7 +10,7 @@ float xSpeed = 0.2;
 int paintingFlag = 0;
 
 float paintingPointsX[10000] = {0}, paintingPointsY[10000] = {0};
-int painingIndex = -1;
+int paintingIndex = -1;
 
 float PAINT_X = 40, PAINT_Y = 255;
 float paintX = 40, paintY = 255;
@@ -22,7 +22,7 @@ void drawCavePaintingScene() {
     drawCave();
 
     // drawPainting(30, 250, 50, 240);
-    // drawPainting(130, 350, 150, 340);
+    drawPainting(180, 250, 200, 240);
 
     // glBegin(GL_LINES);
     //     glColor3f(0, 0, 0);
@@ -31,7 +31,7 @@ void drawCavePaintingScene() {
     // glEnd();
 
     glBegin(GL_POINTS);
-        for(int i = 0; i < painingIndex; ++i) {
+        for(int i = 0; i < paintingIndex; ++i) {
             glColor3f(0, 0, 0);
             glVertex2f(paintingPointsX[i], paintingPointsY[i]);
         }
@@ -42,8 +42,8 @@ void drawCavePaintingScene() {
     if(paintingFlag == 0) {
         paintX -= xSpeed;
         paintY -= ySpeed;
-        paintingPointsX[++painingIndex] = paintX;
-        paintingPointsY[painingIndex] = paintY;
+        paintingPointsX[++paintingIndex] = paintX;
+        paintingPointsY[paintingIndex] = paintY;
         yDisp -= ySpeed;
         xDisp -= xSpeed;
     } else if(paintingFlag == 1) {
@@ -52,8 +52,8 @@ void drawCavePaintingScene() {
             PAINT_Y = paintY;
         }
         paintX += xSpeed;
-        paintingPointsX[++painingIndex] = paintX;
-        paintingPointsY[painingIndex] = paintY;
+        paintingPointsX[++paintingIndex] = paintX;
+        paintingPointsY[paintingIndex] = paintY;
         xDisp += xSpeed;
     } else if(paintingFlag == 2) {
         if(paintX > 50) {
@@ -62,8 +62,8 @@ void drawCavePaintingScene() {
         }
         paintX -= xSpeed;
         paintY += ySpeed;
-        paintingPointsX[++painingIndex] = paintX;
-        paintingPointsY[painingIndex] = paintY;
+        paintingPointsX[++paintingIndex] = paintX;
+        paintingPointsY[paintingIndex] = paintY;
         xDisp -= xSpeed;
         yDisp += ySpeed;
     } else if(paintingFlag == 3) {
@@ -76,8 +76,8 @@ void drawCavePaintingScene() {
             yDisp = -5;
         }
         paintX += xSpeed;
-        paintingPointsX[++painingIndex] = paintX;
-        paintingPointsY[painingIndex] = paintY;
+        paintingPointsX[++paintingIndex] = paintX;
+        paintingPointsY[paintingIndex] = paintY;
         xDisp += xSpeed;
     } else if(paintingFlag == 4) {
         if(paintX > 50) {
@@ -86,8 +86,8 @@ void drawCavePaintingScene() {
         }
         paintX -= xSpeed;
         paintY -= ySpeed;
-        paintingPointsX[++painingIndex] = paintX;
-        paintingPointsY[painingIndex] = paintY;
+        paintingPointsX[++paintingIndex] = paintX;
+        paintingPointsY[paintingIndex] = paintY;
         yDisp -= ySpeed;
         xDisp -= xSpeed;
     } else if(paintingFlag == 5) {
@@ -97,8 +97,8 @@ void drawCavePaintingScene() {
         }
         paintX -= xSpeed;
         paintY += ySpeed;
-        paintingPointsX[++painingIndex] = paintX;
-        paintingPointsY[painingIndex] = paintY;
+        paintingPointsX[++paintingIndex] = paintX;
+        paintingPointsY[paintingIndex] = paintY;
         yDisp += ySpeed;
         xDisp -= xSpeed;
     } else {

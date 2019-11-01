@@ -2,6 +2,7 @@
 #include "../headers/vars.h"
 #include "drawDeerWithSpear.c"
 #include "drawBlood.c"
+#include "scene_2.c"
 
 void drawHuntScene() {
     glClearColor(0, 0, 0, 0);
@@ -95,6 +96,10 @@ void drawHuntScene() {
                 glVertex2f((deer[0].xStart + 40) + groundBlood, deer[0].yStart - 3);
                 glVertex2f((deer[0].xStart + 40) + groundBlood, deer[0].yStart);
             glEnd();
+        }
+        if(groundBlood == 20) {
+            glutDisplayFunc(scene_2);
+            glutPostRedisplay();
         }
     }
 
